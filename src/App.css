@@ -1,0 +1,26 @@
+.my-button {
+  padding: 10px;
+  box-shadow: inset 0px -5px 0px 0px rgba(0,0,0,0.25);
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+}
+
+.my-button:active {
+  box-shadow: inset 0px -2px 0px 0px rgba(0,0,0,0.25);
+}
+
+.primary-button {
+  background-color: rgb(17, 155, 209);
+}
+
+.primary-button:hover {
+  background-color: rgb(13, 133, 180);
+}
+
+.my-input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #8ba1b8;
+  font-size: 1rem;
+}
