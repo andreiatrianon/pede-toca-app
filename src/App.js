@@ -40,11 +40,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <section id='artists-list'>
         {this.state.artists.map((artist, index) => 
           <ArtistsCard key={index} {...artist} />
         )}
-      </div>
+      </section>
     )
   }
 }
