@@ -42,7 +42,7 @@ class App extends Component {
     return (
       <div>
         {this.state.artists.map((artist, index) => 
-          <ArtistsCard key={index} id={artist.id} name={artist.name} genre={artist.genre} />
+          <ArtistsCard key={index} {...artist} />
         )}
       </div>
     )

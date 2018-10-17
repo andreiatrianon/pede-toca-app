@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from './Card.js';
 import './ArtistsCard.css';
-import ArtistTrack from './ArtistTrack.js'
+import ArtistTrack from './ArtistTrack.js';
+import PropTypes from 'prop-types';
 
 class ArtistsCard extends React.Component {
 
@@ -39,11 +40,17 @@ class ArtistsCard extends React.Component {
         <h3>{this.props.genre}</h3>
         <button onClick={this.getArtistTracks}>Ver músicas</button>
         <ul>
-          {this.state.tracks.map(track => ArtistTrack(track))}
+          {this.state.tracks.map((track, index) => <ArtistTrack key={index} {...track} />)}
         </ul>
       </Card>
     )
   }
 }
+
+ArtistsCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired
+};
 
 export default ArtistsCard;
