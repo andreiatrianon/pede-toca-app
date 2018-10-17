@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ArtistsCard from './ArtistsCard.js';
+import {Col} from 'react-materialize';
 
 class App extends Component {
   constructor(props) {
@@ -41,9 +42,11 @@ class App extends Component {
   render() {
     return (
       <section id='artists-list'>
-        {this.state.artists.map((artist, index) => 
-          <ArtistsCard key={index} {...artist} />
-        )}
+          {this.state.artists.map((artist, index) =>
+            <Col m={4} s={4}> 
+              <ArtistsCard key={index} {...artist} />
+            </Col>
+          )}
       </section>
     )
   }

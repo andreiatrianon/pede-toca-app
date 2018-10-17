@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, Card, Input, Button} from 'react-materialize'
+import {Row, Col, Card, Input, Button} from 'react-materialize';
 
 class TextFields extends React.Component {  
   render() {

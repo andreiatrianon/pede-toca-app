@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Forms from './Forms.js';
 import * as serviceWorker from './serviceWorker';
+import {Row} from 'react-materialize';
 
 ReactDOM.render(
   <div>
     <Forms />
-    <App />
+    <Row>
+      <App />
+    </Row>
   </div>,
 document.getElementById('root')
 );

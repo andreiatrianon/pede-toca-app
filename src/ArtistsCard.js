@@ -3,6 +3,7 @@ import Card from './Card.js';
 import './ArtistsCard.css';
 import ArtistTrack from './ArtistTrack.js';
 import PropTypes from 'prop-types';
+import {Button} from 'react-materialize';
 
 class ArtistsCard extends React.Component {
 
@@ -36,9 +37,9 @@ class ArtistsCard extends React.Component {
   render() {
     return (
       <Card>
-        <h2>{this.props.name}</h2>
-        <h3>{this.props.genre}</h3>
-        <button onClick={this.getArtistTracks}>Ver músicas</button>
+        <h5>{this.props.name}</h5>
+        <p>{this.props.genre}</p>
+        <Button waves='light' className='purple accent-4 small' onClick={this.getArtistTracks}>músicas</Button>
         <ul>
           {this.state.tracks.map((track, index) => <ArtistTrack key={index} {...track} />)}
         </ul>

@@ -1,13 +1,11 @@
 import React from 'react';
 import './Card.css';
 import PropTypes from 'prop-types';
+import {CollapsibleItem} from 'react-materialize';
 
 function Card(props) {
   return (
-    <div className="my-card">
-      {props.children}
-    </div>
-      //outra forma de chamar: props.children[0]
+    <CollapsibleItem header={props.children} icon='keyboard_voice'></CollapsibleItem>
   );
 }
 
