@@ -42,39 +42,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Route path='/artists' render={() => 
-          
-          <section id='artists-list'>      
-            {this.state.artists.map((artist, index) =>
-              <Col m={4} s={4}> 
-                <ArtistsCard key={index} {...artist} />
-              </Col>
-            )}
-          </section>
-        } />
-
-        <Route path='/about' exact component={About} />
-        <Route path='/contact' component={Contact} />
-        <Route path='/about/yes' render={() => <p>isso mesmo</p>}/>
+      <div>               
+        {this.state.artists.map((artist, index) =>
+          <Col m={4} s={4}> 
+            <ArtistsCard key={index} {...artist} />
+          </Col>
+        )}
       </div>
     )
   }
-}
-
-const About = () => {
-  return (
-    <div>
-      <h1>Sobre nós</h1>
-      <Link to='/about/yes'>Clica aqui</Link>
-    </div>
-  )
-}
-
-const Contact = () => {
-  return (
-    <h1>Contato</h1>
-  )
 }
 
 export default App;
