@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ArtistsCard from './ArtistsCard.js';
+import {Link, Route} from "react-router-dom";
 import {Col} from 'react-materialize';
 
 class App extends Component {
@@ -41,15 +42,39 @@ class App extends Component {
 
   render() {
     return (
-      <section id='artists-list'>
-          {this.state.artists.map((artist, index) =>
-            <Col m={4} s={4}> 
-              <ArtistsCard key={index} {...artist} />
-            </Col>
-          )}
-      </section>
+      <div>
+        <Route path='/artists' render={() => 
+          
+          <section id='artists-list'>      
+            {this.state.artists.map((artist, index) =>
+              <Col m={4} s={4}> 
+                <ArtistsCard key={index} {...artist} />
+              </Col>
+            )}
+          </section>
+        } />
+
+        <Route path='/about' exact component={About} />
+        <Route path='/contact' component={Contact} />
+        <Route path='/about/yes' render={() => <p>isso mesmo</p>}/>
+      </div>
     )
   }
+}
+
+const About = () => {
+  return (
+    <div>
+      <h1>Sobre nós</h1>
+      <Link to='/about/yes'>Clica aqui</Link>
+    </div>
+  )
+}
+
+const Contact = () => {
+  return (
+    <h1>Contato</h1>
+  )
 }
 
 export default App;

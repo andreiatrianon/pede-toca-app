@@ -3,15 +3,24 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Forms from './Forms.js';
 import * as serviceWorker from './serviceWorker';
-import {Row} from 'react-materialize';
+import {BrowserRouter, Link} from "react-router-dom";
+import {Row, Navbar, NavItem} from 'react-materialize';
 
 ReactDOM.render(
-  <div>
-    <Forms />
-    <Row>
-      <App />
-    </Row>
-  </div>,
+  <BrowserRouter>
+    <div>
+      <Navbar className='teal lighten-2'>
+        <NavItem><Link to="/">Home</Link></NavItem>
+        <NavItem><Link to="/artists">Artistas</Link></NavItem>
+        <NavItem><Link to="/about">Sobre nós</Link></NavItem>
+        <NavItem><Link to="/contact">Entre em contato</Link></NavItem>
+      </Navbar>
+      <Forms />
+      <Row>
+        <App />
+      </Row>
+    </div>
+  </BrowserRouter>,
 document.getElementById('root')
 );
 
