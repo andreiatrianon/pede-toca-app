@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from './Card.js';
-import './ArtistsCard.css';
 import ArtistTrack from './ArtistTrack.js';
 import PropTypes from 'prop-types';
 import {Button} from 'react-materialize';
@@ -35,7 +34,7 @@ class ArtistsCard extends React.Component {
   }
 
   render() {
-    return (
+    return ( 
       <Card>
         <h5>{this.props.name}</h5>
         <p>{this.props.genre}</p>

@@ -1,12 +1,12 @@
 import React from 'react';
-import './Card.css';
 import PropTypes from 'prop-types';
+import './Card.css';
 import {CollapsibleItem} from 'react-materialize';
 
 function Card(props) {
   return (
-    <CollapsibleItem header={props.children} icon='keyboard_voice'></CollapsibleItem>
-  );
+    <CollapsibleItem className='my-w-20 my-d-inline-block my-mb-10' header={props.children} icon='keyboard_voice'>teste</CollapsibleItem>
+  )
 }
 
 Card.propTypes = {

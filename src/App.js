@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import ArtistsCard from './ArtistsCard.js';
-import {Link, Route} from "react-router-dom";
-import {Col} from 'react-materialize';
+import './App.css';
+import {Collapsible} from 'react-materialize';
 
 class App extends Component {
   constructor(props) {
@@ -42,13 +41,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>               
+      <Collapsible className='my-text-center' popout defaultActiveKey={1}>              
         {this.state.artists.map((artist, index) =>
-          <Col m={4} s={4}> 
-            <ArtistsCard key={index} {...artist} />
-          </Col>
+          <ArtistsCard key={index} {...artist} />
         )}
-      </div>
+      </Collapsible>
     )
   }
 }

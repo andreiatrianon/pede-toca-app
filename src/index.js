@@ -4,14 +4,12 @@ import App from './App';
 import Forms from './Forms.js';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Link, Route} from "react-router-dom";
-import {Row, Navbar, NavItem} from 'react-materialize';
+import {Navbar, NavItem} from 'react-materialize';
 
 const ArtistsList = () => {
   return (
     <section id='artists-list'>  
-      <Row>
-        <App />
-      </Row>
+      <App />
     </section>
   )
 }
