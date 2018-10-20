@@ -34,10 +34,10 @@ ReactDOM.render(
   <BrowserRouter>
     <div>
       <Navbar className='teal lighten-2'>
-        <NavItem><Link to="/">Home</Link></NavItem>
-        <NavItem><Link to="/artists">Artistas</Link></NavItem>
-        <NavItem><Link to="/about">Sobre nós</Link></NavItem>
-        <NavItem><Link to="/contact">Entre em contato</Link></NavItem>
+        <NavItem><Link to='/'>Home</Link></NavItem>
+        <NavItem><Link to='/artists'>Artistas</Link></NavItem>
+        <NavItem><Link to='/about'>Sobre nós</Link></NavItem>
+        <NavItem><Link to='/contact'>Entre em contato</Link></NavItem>
       </Navbar>
       <Forms />
       <Route path='/artists' component={ArtistsList} />
