@@ -1,8 +1,6 @@
 import React from 'react';
 import Card from './Card.js';
-import ArtistTrack from './ArtistTrack.js';
 import PropTypes from 'prop-types';
-import {Button} from 'react-materialize';
 
 function ArtistsCard(props) {
   return ( 

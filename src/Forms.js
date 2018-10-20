@@ -1,4 +1,5 @@
 import React from 'react';
+import App from './App.js'
 import {Row, Col, Card, Input, Button} from 'react-materialize';
 
 class TextFields extends React.Component {  
@@ -8,58 +9,55 @@ class TextFields extends React.Component {
       newArtist:{},
       newTrack:{}
     }
-    this.createNewArtist = this.createNewArtist.bind(this);
     this.postNewArtistInAPI = this.postNewArtistInAPI.bind(this);
+    this.createNewArtist = this.createNewArtist.bind(this);
+    this.requestPostArtistInAPI = this.requestPostArtistInAPI.bind(this);
   }
 
+  
+  async postNewArtistInAPI() {
+    await this.createNewArtist();
+    let alreadyHasArtist;
+    let data = await this.props.getArtistsFromAPI();
+    data.map(artist => {
+      if(artist.name.toLowerCase() === this.state.newArtist.name.toLowerCase() && artist.genre.toLowerCase() === this.state.newArtist.genre.toLowerCase()) {
+        alreadyHasArtist = true;
+        alert('Esse artista já existe aqui =)');
+      }
+    })
+    if(!alreadyHasArtist) {
+      await this.requestPostArtistInAPI();
+      alert('Seu artista foi inserido! =)');
+      window.location.reload();
+    }
+  }
+  
   createNewArtist() {
     let newArtistFromInput = document.getElementById('input-artist-name').value;
     let artistGenreFromInput = document.getElementById('input-artist-genre').value;
     let bodyToOptions = {
-                          name: newArtistFromInput,
-                          genre: artistGenreFromInput
-                        }
+      name: newArtistFromInput,
+      genre: artistGenreFromInput
+    }
     return this.setState({
       newArtist: bodyToOptions
     });
   }
-
-  async postNewArtistInAPI() {
-    await this.createNewArtist();
+  
+  requestPostArtistInAPI() {    
     const BASE_URL = 'https://peaceful-badlands-98440.herokuapp.com'
     const options = {
-      method: 'get',
-      credentials: 'include'
-    }
-    let alreadyHasArtist;
-    fetch(`${BASE_URL}/artists`, options)
-      .then(res => res.json())
-      .then(data => { 
-        data.map(artist => {
-          if(artist.name.toLowerCase() === this.state.newArtist.name.toLowerCase() && artist.genre.toLowerCase() === this.state.newArtist.genre.toLowerCase()) {
-            alreadyHasArtist = true;
-            alert('Esse artista já existe aqui =)');
-          }
-        })
-        if(!alreadyHasArtist) {
-          const options = {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify(this.state.newArtist)
-          }
-          fetch(`${BASE_URL}/artists`, options);
-          alert('Seu artista foi inserido! =)');
-          window.location.reload();
-        }
-      }    
-    );
+                      method: 'post',
+                      headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        credentials: 'include',
+                        body: JSON.stringify(this.state.newArtist)
+                     }
+    return fetch(`${BASE_URL}/artists`, options);
   }
 
   render() {
-
     return (
       <Row>
         <Col m={6} s={12}>

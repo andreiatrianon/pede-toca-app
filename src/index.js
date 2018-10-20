@@ -6,10 +6,39 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Link, Route} from "react-router-dom";
 import {Navbar, NavItem} from 'react-materialize';
 
+const BASE_URL = 'https://peaceful-badlands-98440.herokuapp.com';
+
+const loginAPI = () => {
+  const options = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify(
+      {email: 'rafael@laboratoria.la',
+      password: 'banana'}
+    )
+  }
+  return fetch(`${BASE_URL}/login`, options);
+}
+
+const getArtistsFromAPI = () => {
+  const options = {
+    method: 'get',
+    credentials: 'include'
+  }
+
+  return fetch(`${BASE_URL}/artists`, options)
+    .then(res => res.json())
+    .then(data => data)
+}
+
+
 const ArtistsList = () => {
   return (
     <section id='artists-list'>  
-      <App />
+      <App loginAPI={loginAPI} getArtistsFromAPI={getArtistsFromAPI} />
     </section>
   )
 }
@@ -29,7 +58,6 @@ const Contact = () => {
   )
 }
 
-
 ReactDOM.render(
   <BrowserRouter>
     <div>
@@ -39,7 +67,7 @@ ReactDOM.render(
         <NavItem><Link to='/about'>Sobre nós</Link></NavItem>
         <NavItem><Link to='/contact'>Entre em contato</Link></NavItem>
       </Navbar>
-      <Forms />
+      <Forms getArtistsFromAPI={getArtistsFromAPI} />
       <Route path='/artists' component={ArtistsList} />
       <Route path='/about' exact component={About} />
       <Route path='/contact' component={Contact} />

@@ -18,10 +18,7 @@ class Card extends React.Component {
     const options = {
       method: 'get',
       credentials: 'include'
-    }
-
-    console.log(`${BASE_URL}/artists/${this.props.id}/tracks`);
-  
+    }  
     fetch(`${BASE_URL}/artists/${this.props.id}/tracks`, options)
       .then(res => res.json())
       .then(data => {
