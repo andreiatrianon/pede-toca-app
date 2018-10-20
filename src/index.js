@@ -31,7 +31,10 @@ const getArtistsFromAPI = () => {
 
   return fetch(`${BASE_URL}/artists`, options)
     .then(res => res.json())
-    .then(data => data)
+    .then(data => {
+      console.log(data)
+      return data
+    })
 }
 
 

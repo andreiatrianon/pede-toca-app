@@ -1,17 +1,26 @@
 import React from 'react';
 import App from './App.js'
-import {Row, Col, Card, Input, Button} from 'react-materialize';
+import {Row, Col, Card, Input, Button, Autocomplete} from 'react-materialize';
 
 class TextFields extends React.Component {  
   constructor(props) {
     super(props);
     this.state = {
+      artistsName: {},
       newArtist:{},
       newTrack:{}
     }
     this.postNewArtistInAPI = this.postNewArtistInAPI.bind(this);
     this.createNewArtist = this.createNewArtist.bind(this);
     this.requestPostArtistInAPI = this.requestPostArtistInAPI.bind(this);
+  }
+
+  async componentDidMount() {
+    let data = await this.props.getArtistsFromAPI();
+    let artistsName ={}
+    data.map(artist => artistsName[artist.name] = 'https://www.shareicon.net/download/2016/08/01/639882_display.svg');
+    this.setState({artistsName});
+    console.log(this.state.artistsName);
   }
 
   
@@ -69,14 +78,13 @@ class TextFields extends React.Component {
         </Col>
         <Col m={6} s={12}>
           <Card className='white' textClassName='black-text' title='INSIRA NOVA MÚSICA'>
-            <Input s={6} type='select' label="Escolha o artista">
-              <option value='1'>Option 1</option>
-              <option value='2'>Option 2</option>
-              <option value='3'>Option 3</option>
-            </Input>
+            <Row>
+              <Autocomplete title='Escolha o artista' data={this.state.artistsName} />
+            </Row>
             <Input s={6} label="Nome da música" validate defaultValue='' />
+            <Input s={6} label="Link da música" validate defaultValue='' />
             <Button waves='light'>Criar nova música</Button>
-            </Card>
+          </Card>
         </Col>
       </Row>
     );
