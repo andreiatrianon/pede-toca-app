@@ -1,0 +1,12 @@
+a {
+  color: white;
+}
+
+.border-radius {
+  border-radius: 90px;
+}
+
+.my-btn-hover:hover {
+  background-color: white;
+  color: #F62D51;
+}

@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
+import TracksList from './TracksList';
 import App from './App';
 import Forms from './Forms.js';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Link, Route} from "react-router-dom";
-import {Navbar, NavItem} from 'react-materialize';
+import {Row, Button} from 'react-materialize';
 
 const BASE_URL = 'https://peaceful-badlands-98440.herokuapp.com';
 
@@ -23,6 +25,20 @@ const loginAPI = () => {
   return fetch(`${BASE_URL}/login`, options);
 }
 
+const getTracksFromAPI = () => {
+  const options = {
+    method: 'get',
+    credentials: 'include'
+  }
+
+  return fetch(`${BASE_URL}/tracks`, options)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      return data
+    })
+}
+
 const getArtistsFromAPI = () => {
   const options = {
     method: 'get',
@@ -37,8 +53,13 @@ const getArtistsFromAPI = () => {
     })
 }
 
+const trackslist = () => {
+  return (
+    <TracksList getTracksFromAPI={getTracksFromAPI} />
+  )
+}
 
-const ArtistsList = () => {
+const artistsList = () => {
   return (
     <section id='artists-list'>  
       <App loginAPI={loginAPI} getArtistsFromAPI={getArtistsFromAPI} />
@@ -46,7 +67,7 @@ const ArtistsList = () => {
   )
 }
 
-const About = () => {
+const about = () => {
   return (
     <div>
       <h1>Sobre nós</h1>
@@ -55,7 +76,7 @@ const About = () => {
   )
 }
 
-const Contact = () => {
+const contact = () => {
   return (
     <h1>Contato</h1>
   )
@@ -64,20 +85,21 @@ const Contact = () => {
 ReactDOM.render(
   <BrowserRouter>
     <div>
-      <Navbar className='teal lighten-2'>
-        <NavItem><Link to='/'>Home</Link></NavItem>
-        <NavItem><Link to='/artists'>Artistas</Link></NavItem>
-        <NavItem><Link to='/about'>Sobre nós</Link></NavItem>
-        <NavItem><Link to='/contact'>Entre em contato</Link></NavItem>
-      </Navbar>
+      <Row>
+        <Link to='/'><Button className='border-radius my-btn-hover'>Home</Button></Link>
+        <Link to='/artists'><Button className='border-radius my-btn-hover'>Artistas</Button></Link>
+        <Link to='/about'><Button className='border-radius my-btn-hover'>Sobre nós</Button></Link>
+        <Link to='/contact'><Button className='border-radius my-btn-hover'>Entre em contato</Button></Link>
+      </Row>
       <Forms getArtistsFromAPI={getArtistsFromAPI} />
-      <Route path='/artists' component={ArtistsList} />
-      <Route path='/about' exact component={About} />
-      <Route path='/contact' component={Contact} />
+      <Route path='/' exact component={trackslist} />
+      <Route path='/artists' exact component={artistsList} />
+      <Route path='/about' exact component={about} />
+      <Route path='/contact' component={contact} />
       <Route path='/about/yes' render={() => <p>isso mesmo</p>}/>
     </div>
   </BrowserRouter>,
-document.getElementById('root')
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
