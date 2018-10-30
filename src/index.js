@@ -62,7 +62,7 @@ const trackslist = () => {
 
 const artistsList = () => {
   return (
-    <section id='artists-list' className='my-p-3'>  
+    <section id='artists-list' className='white my-p-2'>  
       <App loginAPI={loginAPI} getArtistsFromAPI={getArtistsFromAPI} />
     </section>
   )
@@ -74,6 +74,8 @@ ReactDOM.render(
         <Link to='/'><Button className='border-radius my-btn-hover'>Músicas</Button></Link>
         <Link to='/artists'><Button className='border-radius my-btn-hover'>Artistas</Button></Link>
       </Row>
+      <Route path='/' exact component={trackslist} />
+      <Route path='/artists' exact component={artistsList} />
       {/* <Forms getArtistsFromAPI={getArtistsFromAPI} /> */}
       <Button floating fab='vertical' icon='add' faicon='fa fa-plus' className='red' large style={{bottom: '45px', right: '24px'}}>
         <Modal
@@ -87,8 +89,6 @@ ReactDOM.render(
           <ArtistForm getArtistsFromAPI={getArtistsFromAPI} />
         </Modal>
       </Button>
-      <Route path='/' exact component={trackslist} />
-      <Route path='/artists' exact component={artistsList} />
     </div>
   </BrowserRouter>,
   document.getElementById('root')
