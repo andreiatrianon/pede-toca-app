@@ -1,3 +1,18 @@
 .my-text-center {
   text-align: center;
 }
+
+.my-bg-brown {
+  /* background-color: #e6d3b3; */
+  /* background-color: #725f50; */
+  /* background-color: #cf864f; */
+  background-color: #c9b88a;
+}
+
+.my-p-2 {
+  padding: 2vw;
+}
+
+.my-mr-1 {
+  margin-right: 1vw;
+}

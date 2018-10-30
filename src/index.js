@@ -61,42 +61,25 @@ const trackslist = () => {
 
 const artistsList = () => {
   return (
-    <section id='artists-list'>  
+    <section id='artists-list' className='my-p-3'>  
       <App loginAPI={loginAPI} getArtistsFromAPI={getArtistsFromAPI} />
     </section>
   )
 }
-
-const about = () => {
-  return (
-    <div>
-      <h1>Sobre nós</h1>
-      <Link to='/about/yes'>Clica aqui</Link>
-    </div>
-  )
-}
-
-const contact = () => {
-  return (
-    <h1>Contato</h1>
-  )
-}
-
 ReactDOM.render(
   <BrowserRouter>
     <div>
       <Row>
-        <Link to='/'><Button className='border-radius my-btn-hover'>Home</Button></Link>
+        <Link to='/'><Button className='border-radius my-btn-hover'>Músicas</Button></Link>
         <Link to='/artists'><Button className='border-radius my-btn-hover'>Artistas</Button></Link>
-        <Link to='/about'><Button className='border-radius my-btn-hover'>Sobre nós</Button></Link>
-        <Link to='/contact'><Button className='border-radius my-btn-hover'>Entre em contato</Button></Link>
       </Row>
-      <Forms getArtistsFromAPI={getArtistsFromAPI} />
+      {/* <Forms getArtistsFromAPI={getArtistsFromAPI} /> */}
+      <Button floating fab='vertical' icon='add' faicon='fa fa-plus' className='red' large style={{bottom: '45px', right: '24px'}}>
+        <Button floating icon='music_note' className='green'/>
+        <Button floating icon='keyboard_voice' className='blue'/>
+      </Button>
       <Route path='/' exact component={trackslist} />
       <Route path='/artists' exact component={artistsList} />
-      <Route path='/about' exact component={about} />
-      <Route path='/contact' component={contact} />
-      <Route path='/about/yes' render={() => <p>isso mesmo</p>}/>
     </div>
   </BrowserRouter>,
   document.getElementById('root')

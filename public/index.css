@@ -1,4 +1,23 @@
-.my-bg {
-  /* background: linear-gradient(50deg, HSLA(205, 62%, 44%, 1), #F62D51); */
-  /* background-color: #23334B; */
+.my-text-center {
+  text-align: center;
+}
+
+.my-main-bg {
+  background-image: url('OF8LFJ0.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.my-pt-40 {
+  padding-top: 40vh;
+}
+
+.my-pb-20 {
+  padding-bottom: 20vh;
+}
+
+.my-p-3 {
+  padding: 3vw;
 }
