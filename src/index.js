@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import TracksList from './TracksList';
 import App from './App';
-import Forms from './Forms.js';
+import ArtistForm from './ArtistForm.js';
+import TrackForm from './TrackForm.js';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Link, Route} from "react-router-dom";
-import {Row, Button} from 'react-materialize';
+import {Row, Modal, Button} from 'react-materialize';
 
 const BASE_URL = 'https://peaceful-badlands-98440.herokuapp.com';
 
@@ -75,8 +76,16 @@ ReactDOM.render(
       </Row>
       {/* <Forms getArtistsFromAPI={getArtistsFromAPI} /> */}
       <Button floating fab='vertical' icon='add' faicon='fa fa-plus' className='red' large style={{bottom: '45px', right: '24px'}}>
-        <Button floating icon='music_note' className='green'/>
-        <Button floating icon='keyboard_voice' className='blue'/>
+        <Modal
+          header='Adicionar nova música'
+          trigger={<Button floating icon='music_note' className='green'/>}>
+          <TrackForm getArtistsFromAPI={getArtistsFromAPI} />
+        </Modal>
+        <Modal
+          header='Adicionar novo artista'
+          trigger={<Button floating icon='keyboard_voice' className='blue'/>}>
+          <ArtistForm getArtistsFromAPI={getArtistsFromAPI} />
+        </Modal>
       </Button>
       <Route path='/' exact component={trackslist} />
       <Route path='/artists' exact component={artistsList} />
