@@ -9,3 +9,16 @@ width: 27vw;
 #artists-list .my-mb-10 {
   margin-bottom: 10vh;
 }
+
+.my-orange {
+  color: orangered;
+}
+
+.my-green {
+  color: #579f94;
+  /* color: green; */
+}
+
+.icon-button:hover {
+  cursor: pointer;
+}
