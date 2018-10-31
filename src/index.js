@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-localStorage.setItem('playlist', '');
-localStorage.setItem('favoriteArtists', '');
+localStorage.setItem('playlist', []);
+localStorage.setItem('favoriteArtists', []);
 
 ReactDOM.render(
   <App />,
