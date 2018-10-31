@@ -21,7 +21,7 @@ class ArtistsCard extends React.Component {
       localStorage.setItem('favoriteArtists', this.state.favoriteArtists);
       e.target.className = 'material-icons small icon-button my-orange';
     } else {
-      this.state.favoriteArtists = this.state.favoriteArtists.filter(el => el !== artistId);
+      this.setState({favoriteArtists: this.state.favoriteArtists.filter(el => el !== artistId)});
       localStorage.setItem('favoriteArtists', this.state.favoriteArtists);
       e.target.className = 'material-icons small icon-button my-gray';
     }

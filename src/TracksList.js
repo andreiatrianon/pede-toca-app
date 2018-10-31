@@ -3,7 +3,7 @@ import {Col, Card, Icon} from 'react-materialize'
 import './App.css'
 import './Card.css'
 
-class App extends Component {
+class TrackList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,4 +49,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default TrackList;
