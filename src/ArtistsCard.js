@@ -3,6 +3,9 @@ import Card from './Card.js';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-materialize';
 
+localStorage.setItem('playlist', []);
+localStorage.setItem('favoriteArtists', []);
+
 let favoriteArtists = localStorage.getItem('favoriteArtists').split(',');
 
 class ArtistsCard extends React.Component {
