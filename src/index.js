@@ -11,6 +11,11 @@ import {Row, Modal, Button} from 'react-materialize';
 
 const BASE_URL = 'https://peaceful-badlands-98440.herokuapp.com';
 
+let playlist = [];
+let favoriteArtists = [];
+localStorage.setItem('playlist', playlist);
+localStorage.setItem('favoriteArtists', favoriteArtists);
+
 const loginAPI = () => {
   const options = {
     method: 'post',
@@ -67,15 +72,26 @@ const artistsList = () => {
     </section>
   )
 }
+
+// const playlist = () => {
+//   return (
+//     <Playlist />
+//   )
+// }
+
 ReactDOM.render(
   <BrowserRouter>
     <div>
       <Row>
         <Link to='/'><Button className='border-radius my-btn-hover'>Músicas</Button></Link>
         <Link to='/artists'><Button className='border-radius my-btn-hover'>Artistas</Button></Link>
+        <Link to='/playlist'><Button className='border-radius my-btn-hover'>Minha Playlist</Button></Link>
+        <Link to='/favorite'><Button className='border-radius my-btn-hover'>Artistas Favoritos</Button></Link>
       </Row>
       <Route path='/' exact component={trackslist} />
       <Route path='/artists' exact component={artistsList} />
+      {/* <Route path='/playlist' exact component={} />
+      <Route path='/favorite' exact component={} /> */}
       {/* <Forms getArtistsFromAPI={getArtistsFromAPI} /> */}
       <Button floating fab='vertical' icon='add' faicon='fa fa-plus' className='red' large style={{bottom: '45px', right: '24px'}}>
         <Modal

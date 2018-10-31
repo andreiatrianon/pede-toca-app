@@ -10,13 +10,17 @@ width: 27vw;
   margin-bottom: 10vh;
 }
 
-.my-orange {
+.my-orange, .my-gray:hover {
   color: orangered;
 }
 
 .my-green {
   color: #579f94;
   /* color: green; */
+}
+
+.my-gray {
+  color: gray;
 }
 
 .icon-button:hover {

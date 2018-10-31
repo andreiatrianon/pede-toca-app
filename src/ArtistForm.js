@@ -19,7 +19,6 @@ class ArtistForm extends React.Component {
     let artistsName ={}
     data.map(artist => artistsName[artist.name] = 'https://www.shareicon.net/download/2016/08/01/639882_display.svg');
     this.setState({artistsName});
-    console.log(this.state.artistsName);
   }
 
   

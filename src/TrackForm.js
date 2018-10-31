@@ -20,7 +20,6 @@ class TrackForm extends React.Component {
     let artistsName ={}
     data.map(artist => artistsName[artist.name] = 'https://www.shareicon.net/download/2016/08/01/639882_display.svg');
     this.setState({artistsName});
-    console.log(this.state.artistsName);
   }
 
   async postNewTrackInAPI() {
@@ -54,7 +53,6 @@ class TrackForm extends React.Component {
     return fetch(`${BASE_URL}/tracks`, options)
             .then(res => res.json())
             .then(data => {
-              console.log(data)
               return data.id;
             })
   }

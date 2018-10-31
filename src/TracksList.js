@@ -18,18 +18,18 @@ class App extends Component {
     return this.setState({tracksList: data})
   }
 
-  addTrackToPlaylist(event) {
-    let trackId = event.target.parentElement.getAttribute('data-id');
-    if (event.target.innerHTML === 'playlist_add') {
+  addTrackToPlaylist(e) {
+    let trackId = e.target.parentElement.getAttribute('data-id');
+    if (e.target.innerHTML === 'playlist_add') {
       this.state.playlist.push(trackId);
       localStorage.setItem('playlist', this.state.playlist);
-      event.target.textContent = 'playlist_add_check';
-      event.target.className = 'material-icons small icon-button my-green';
+      e.target.textContent = 'playlist_add_check';
+      e.target.className = 'material-icons small icon-button my-green';
     } else {
-      this.state.playlist = this.state.playlist.filter(el => el !== trackId);
+      this.setState({playlist: this.state.playlist.filter(el => el !== trackId)});
       localStorage.setItem('playlist', this.state.playlist);
-      event.target.textContent = 'playlist_add';
-      event.target.className = 'material-icons small icon-button my-orange';
+      e.target.textContent = 'playlist_add';
+      e.target.className = 'material-icons small icon-button my-orange';
     }
   }
 
