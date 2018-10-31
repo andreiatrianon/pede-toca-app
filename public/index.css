@@ -2,20 +2,8 @@
   text-align: center;
 }
 
-.my-main-bg {
-  background-image: url('OF8LFJ0.jpg');
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.my-pt-40 {
-  padding-top: 40vh;
-}
-
-.my-pb-20 {
-  padding-bottom: 20vh;
+.my-mt-2 {
+  margin-top: 2vh;
 }
 
 .my-p-2 {

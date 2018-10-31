@@ -1,32 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Col, Card, Icon} from 'react-materialize'
 import './App.css'
 import './Card.css'
 
-class TrackList extends Component {
+class TracksList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      playlist: []
-    }
+    this.state = {}
     this.addTrackToPlaylist = this.addTrackToPlaylist.bind(this);
   }
 
   addTrackToPlaylist(e) {
-    let trackId = e.target.parentElement.getAttribute('data-id');
+    let trackFromAPI = e.target.parentElement.getAttribute('data-api');
+    let playlist = localStorage.getItem('playlist').split(',');
     if (e.target.innerHTML === 'playlist_add') {
-      this.state.playlist.push(trackId);
-      localStorage.setItem('playlist', this.state.playlist);
+      playlist.push(trackFromAPI);
+      localStorage.setItem('playlist', playlist);
       e.target.textContent = 'playlist_add_check';
       e.target.className = 'material-icons small icon-button my-green';
     } else {
-      this.setState({playlist: this.state.playlist.filter(el => el !== trackId)});
-      localStorage.setItem('playlist', this.state.playlist);
+      playlist = playlist.filter(el => el !== trackFromAPI);
+      localStorage.setItem('playlist', playlist);
       e.target.textContent = 'playlist_add';
       e.target.className = 'material-icons small icon-button my-orange';
     }
   }
-
+  
   render() {
     return (
       <section id='tracks-list' className='white my-text-center my-p-2'>
@@ -43,4 +42,6 @@ class TrackList extends Component {
   }
 }
 
-export default TrackList;
+// data-api={JSON.stringify(track)}
+
+export default TracksList;

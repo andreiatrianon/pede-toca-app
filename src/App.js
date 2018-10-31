@@ -5,31 +5,29 @@ import ArtistsList from './ArtistsList';
 import ArtistForm from './ArtistForm.js';
 import TrackForm from './TrackForm.js';
 import {BrowserRouter, Link, Route} from "react-router-dom";
-import {Row, Modal, Button} from 'react-materialize';
+import {Row, Modal, Button, Parallax} from 'react-materialize';
 
 const BASE_URL = 'https://peaceful-badlands-98440.herokuapp.com';
 
-let playlist = [];
-let favoriteArtists = [];
-localStorage.setItem('playlist', playlist);
-localStorage.setItem('favoriteArtists', favoriteArtists);
 
 class App extends React.Component {
-
+  
   constructor(props) {
     super(props);
     this.state = {
       tracksDB: [],
       artistsDB: [],
-      artistsName:[]
+      artistsName:[],
+      playlist: localStorage.getItem('playlist').split(',')
     }
     this.loginAPI = this.loginAPI.bind(this);
     this.getTracksFromAPI = this.getTracksFromAPI.bind(this);
     this.getArtistsFromAPI = this.getArtistsFromAPI.bind(this);
     this.trackslist = this.trackslist.bind(this);
+    // this.playlist = this.playlist.bind(this);
     this.artistsList = this.artistsList.bind(this);
   }
-
+  
   componentDidMount() {
     this.loginAPI();
     this.getTracksFromAPI();
@@ -87,8 +85,15 @@ class App extends React.Component {
       <TracksList tracksDB={this.state.tracksDB} />
     )
   }
-
+  
+  // playlist() {
+    //   return (
+      //     <TracksList tracksDB={this.state.tracksDB} />
+      //   )
+      // }
+      
   artistsList() {
+    // window.scrollTo(0, 4500);
     return (
       <section id='artists-list' className='white my-p-2'>  
         <ArtistsList artistsDB={this.state.artistsDB} />
@@ -103,13 +108,14 @@ class App extends React.Component {
           <Row>
             <Link to='/'><Button className='border-radius my-btn-hover'>Músicas</Button></Link>
             <Link to='/artists'><Button className='border-radius my-btn-hover'>Artistas</Button></Link>
-            <Link to='/playlist'><Button className='border-radius my-btn-hover'>Minha Playlist</Button></Link>
-            <Link to='/favorite'><Button className='border-radius my-btn-hover'>Artistas Favoritos</Button></Link>
+            {/* <Link to='/playlist'><Button className='border-radius my-btn-hover'>Minha Playlist</Button></Link>
+            <Link to='/favorite'><Button className='border-radius my-btn-hover'>Artistas Favoritos</Button></Link> */}
+            <Parallax className='my-mt-2' imageSrc="OF8LFJ0.jpg"/>
           </Row>
           <Route path='/' exact component={this.trackslist} />
           <Route path='/artists' exact component={this.artistsList} />
-          {/* <Route path='/playlist' exact component={} />
-          <Route path='/favorite' exact component={} /> */}
+          {/* <Route path='/playlist' exact component={this.playlist} /> */}
+          {/* <Route path='/favorite' exact component={} /> */}
           <Button floating fab='vertical' icon='add' faicon='fa fa-plus' className='red' large style={{bottom: '45px', right: '24px'}}>
             <Modal
               header='Adicionar nova música'
