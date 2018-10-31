@@ -5,8 +5,6 @@ class TrackForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistsList: [],
-      artistsName: {},
       newTrack:{}
     }
     this.postNewTrackInAPI = this.postNewTrackInAPI.bind(this);
@@ -14,17 +12,9 @@ class TrackForm extends React.Component {
     this.requestPostTrackWithArtistInAPI = this.requestPostTrackWithArtistInAPI.bind(this);
   }
 
-  async componentDidMount() {
-    let data = await this.props.getArtistsFromAPI();
-    this.setState({artistsList: data});
-    let artistsName ={}
-    data.map(artist => artistsName[artist.name] = 'https://www.shareicon.net/download/2016/08/01/639882_display.svg');
-    this.setState({artistsName});
-  }
-
   async postNewTrackInAPI() {
     let artistFromInput = document.getElementById('input-artist-name2').value;
-    if (Object.keys(this.state.artistsName).includes(artistFromInput)) {
+    if (Object.keys(this.props.artistsName).includes(artistFromInput)) {
       let trackFromInput = document.getElementById('input-track-name').value;
       let trackURLFromInput = document.getElementById('input-track-url').value;
       if (!trackFromInput) {
@@ -61,7 +51,7 @@ class TrackForm extends React.Component {
     let artistId;
     let artistName;
     let artistGenre;
-    this.state.artistsList.map(artist => {
+    this.props.artistsDB.map(artist => {
       if (artist.name === artistFromInput) {
         artistId = artist.id
         artistName = artist.name
@@ -94,7 +84,7 @@ class TrackForm extends React.Component {
     return (
       <Row>
         <Row>
-          <Autocomplete id='input-artist-name2' title='Escolha o artista' data={this.state.artistsName} />
+          <Autocomplete id='input-artist-name2' title='Escolha o artista' data={this.props.artistsName} />
         </Row>
         <Input s={6} id='input-track-name' label="Nome da música" validate defaultValue='' />
         <Input s={6} id='input-track-url' label="Link da música" validate defaultValue='' />

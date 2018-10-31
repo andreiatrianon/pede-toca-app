@@ -7,15 +7,9 @@ class TrackList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tracksList: [],
       playlist: []
     }
     this.addTrackToPlaylist = this.addTrackToPlaylist.bind(this);
-  }
-
-  async componentDidMount() {
-    let data = await this.props.getTracksFromAPI()
-    return this.setState({tracksList: data})
   }
 
   addTrackToPlaylist(e) {
@@ -36,7 +30,7 @@ class TrackList extends Component {
   render() {
     return (
       <section id='tracks-list' className='white my-text-center my-p-2'>
-        {this.state.tracksList.map((track, index) =>
+        {this.props.tracksDB.map((track, index) =>
           <Col id={index} className='my-w-27 my-d-inline-block my-mr-1'>
             <Card className='my-bg-brown' title={track.title}>
               <div data-id={track.id} onClick={this.addTrackToPlaylist}><Icon className='icon-button my-orange' small>playlist_add</Icon></div>

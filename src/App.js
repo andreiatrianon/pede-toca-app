@@ -18,12 +18,22 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      tracksDB: [],
+      artistsDB: [],
+      artistsName:[]
+    }
     this.loginAPI = this.loginAPI.bind(this);
     this.getTracksFromAPI = this.getTracksFromAPI.bind(this);
     this.getArtistsFromAPI = this.getArtistsFromAPI.bind(this);
     this.trackslist = this.trackslist.bind(this);
     this.artistsList = this.artistsList.bind(this);
+  }
+
+  componentDidMount() {
+    this.loginAPI();
+    this.getTracksFromAPI();
+    this.getArtistsFromAPI();
   }
 
   loginAPI() {
@@ -49,9 +59,8 @@ class App extends React.Component {
 
     return fetch(`${BASE_URL}/tracks`, options)
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        return data
+      .then(tracksDB => {
+        return this.setState({tracksDB})
       })
   }
 
@@ -63,22 +72,26 @@ class App extends React.Component {
 
     return fetch(`${BASE_URL}/artists`, options)
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        return data
+      .then(artistsDB => {
+        let artistsName ={}
+        artistsDB.map(artist => artistsName[artist.name] = 'https://www.shareicon.net/download/2016/08/01/639882_display.svg');
+        this.setState({
+                        artistsDB,
+                        artistsName
+                      })
       })
   }
 
   trackslist() {
     return (
-      <TracksList getTracksFromAPI={this.getTracksFromAPI} />
+      <TracksList tracksDB={this.state.tracksDB} />
     )
   }
 
   artistsList() {
     return (
       <section id='artists-list' className='white my-p-2'>  
-        <ArtistsList loginAPI={this.loginAPI} getArtistsFromAPI={this.getArtistsFromAPI} />
+        <ArtistsList artistsDB={this.state.artistsDB} />
       </section>
     )
   }
@@ -101,12 +114,12 @@ class App extends React.Component {
             <Modal
               header='Adicionar nova música'
               trigger={<Button floating icon='music_note' className='green'/>}>
-              <TrackForm getArtistsFromAPI={this.getArtistsFromAPI} />
+              <TrackForm artistsDB={this.state.artistsDB} artistsName={this.state.artistsName} />
             </Modal>
             <Modal
               header='Adicionar novo artista'
               trigger={<Button floating icon='keyboard_voice' className='blue'/>}>
-              <ArtistForm getArtistsFromAPI={this.getArtistsFromAPI} />
+              <ArtistForm artistsDB={this.state.artistsDB} artistsName={this.state.artistsName} />
             </Modal>
           </Button>
         </div>

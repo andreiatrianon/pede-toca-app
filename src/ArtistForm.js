@@ -5,7 +5,6 @@ class ArtistForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistsList: [],
       newArtist:{}
     }
     this.postNewArtistInAPI = this.postNewArtistInAPI.bind(this);
@@ -13,26 +12,16 @@ class ArtistForm extends React.Component {
     this.requestPostArtistInAPI = this.requestPostArtistInAPI.bind(this);
   }
 
-  async componentDidMount() {
-    let data = await this.props.getArtistsFromAPI();
-    this.setState({artistsList: data});
-    let artistsName ={}
-    data.map(artist => artistsName[artist.name] = 'https://www.shareicon.net/download/2016/08/01/639882_display.svg');
-    this.setState({artistsName});
-  }
-
-  
   async postNewArtistInAPI() {
     await this.createNewArtist();
     let alreadyHasArtist;
-    this.state.artistsList.map(artist => {
+    this.props.artistsDB.map(artist => {
       if(artist.name.toLowerCase() === this.state.newArtist.name.toLowerCase() && artist.genre.toLowerCase() === this.state.newArtist.genre.toLowerCase()) {
         alreadyHasArtist = true;
         alert('Esse artista já existe aqui =)');
       }
     })
-    if(!alreadyHasArtist) {    
-      ////////////////////////CHAMADA PARA CRIAR ARTISTA//////  
+    if(!alreadyHasArtist) { 
       await this.requestPostArtistInAPI();
       alert('Seu artista foi inserido! =)');
       window.location.reload();
